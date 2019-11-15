@@ -1,4 +1,4 @@
-# Telegram-Pidgeon
+# Teledove
 
 Telegram-based nofitication system from your computer to your phone.
 
@@ -27,6 +27,7 @@ The script also requires a Telegram bot to notify you with. Setting one up is ea
 1. If you haven't already, download [Telegram](https://telegram.org/) on your (mobile) device.
 2. [Setup](https://telegram.me/botfather) a Telegram bot.
 3. Start a conversation with your new Telegram bot.
+4. Clone this repository/copy the file `alert` and put it somewhere in your PATH (like in `~/.local/.bin`)
 
 ## Usage
 
@@ -35,7 +36,7 @@ The script also requires a Telegram bot to notify you with. Setting one up is ea
 
 The first time you run alert, it asks for a token. You can find this token in your conversation with the BotFather. It looks like `123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11` and if you supply it to the script, it will be stored in the file `~/.telegram_token` for future use.
 
-Keep the token private, it acts like the password to your bot.
+Keep the token private, it acts like a password to your bot.
 
 After obtaining the token, it will fetch the chat ID of the conversation you started with the bot.
 Upon success, this ID will be stored in `~/.telegram_chat_id`. If you have not conversed with the bot, it will not be able to find this chat ID.
