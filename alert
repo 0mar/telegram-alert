@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+TOKEN_FILE="$HOME/.telegram_token"
+ID_FILE="$HOME/.telegram_chat_id"
+
+if [ -f $TOKEN_FILE ]
+then
+    TOKEN=$(<$TOKEN_FILE)
+else
+    TOKEN_SET=0
+    while [ $TOKEN_SET -eq 0 ]
+    do
+        echo "Please provide Telegram Bot token"
+        read TOKEN
+        if [[ $TOKEN == *":"* && ${#TOKEN} -gt 30 ]]
+        then
+           TOKEN_SET=1
+           echo "Token set and stored in $TOKEN_FILE"
+       else
+           echo "That does not look like a valid token. Please try again"
+       fi
+    done
+    echo $TOKEN > $TOKEN_FILE
+fi 
+
+if [ -f $ID_FILE ]
+then
+    ID=$(<$ID_FILE)
+else
+    echo "Fetching chat ID"
+    ID=$(curl -sS "https://api.telegram.org/bot$TOKEN/getUpdates" | grep -Po "(?<=\"id\":)\d+" | head -1)
+    echo $ID > $ID_FILE
+fi
+
+if [ -z "$ID" ]
+then
+    echo "No chat ID found. Start communicating with bot/send a message and try again"
+    rm $ID_FILE
+    exit 1;
+fi
+
+MESSAGE_URL="https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$ID"
+if [ $# -eq 0 ]
+then
+    MESSAGE="Alert from machine"
+else
+    MESSAGE="$@"
+fi
+RESPONSE=$(curl -sS "$MESSAGE_URL&text=$MESSAGE")
+if [[ $RESPONSE == *"\"ok\":false"* ]]
+then
+    echo "Alert failed. Please check if 1) the Telegram Bot is up and running and 2) you have send a message to this bot before"
+    echo "Deleting cache, please try again"
+    rm $TOKEN_FILE $ID_FILE
+fi
