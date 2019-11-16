@@ -2,6 +2,19 @@
 TOKEN_FILE="$HOME/.telegram_token"
 ID_FILE="$HOME/.telegram_chat_id"
 
+get_url () {
+    if hash curl 2>/dev/null
+    then
+        curl -sS "$1"
+    elif hash wget 2>/dev/null
+    then
+        wget -qO- "$1"
+    else
+        echo "No command line url program found. Please install curl or wget" >&2
+        exit 1
+    fi
+}
+
 if [ -f $TOKEN_FILE ]
 then
     TOKEN=$(<$TOKEN_FILE)
@@ -27,7 +40,7 @@ then
     ID=$(<$ID_FILE)
 else
     echo "Fetching chat ID"
-    ID=$(curl -sS "https://api.telegram.org/bot$TOKEN/getUpdates" | grep -Po "(?<=\"id\":)\d+" | head -1)
+    ID=$(get_url "https://api.telegram.org/bot$TOKEN/getUpdates" | grep -Po "(?<=\"id\":)\d+" | head -1)
     echo $ID > $ID_FILE
 fi
 
@@ -45,7 +58,7 @@ then
 else
     MESSAGE="$@"
 fi
-RESPONSE=$(curl -sS "$MESSAGE_URL&text=$MESSAGE")
+RESPONSE=$(get_url "$MESSAGE_URL&text=$MESSAGE")
 if [[ $RESPONSE == *"\"ok\":false"* ]]
 then
     echo "Alert failed. Please check if 1) the Telegram Bot is up and running and 2) you have send a message to this bot before"
