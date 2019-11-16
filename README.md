@@ -12,13 +12,13 @@ Teledove might be able to help you out. It is a simple, minimal command line too
 
 ## Requirements
 
-The script is written to make use of minimal dependencies. It relies on
+The tool is designed to have minimal external dependencies. It requires only
 
  - `bash`
- - `curl`/`wget`
+ - `curl` or `wget`
  - `grep`
 
-all of which should be present on standard Mac/Linux systems, but can otherwise be installed with `brew`/any package manager.
+all of which should be present on standard Mac and Linux systems, but can otherwise be installed with `brew`/any package manager.
 
 The script also requires a Telegram bot to notify you with. Setting one up is easy and can be done through Telegram itself with the [BotFather](https://telegram.me/botfather) wizard.
 
@@ -27,7 +27,7 @@ The script also requires a Telegram bot to notify you with. Setting one up is ea
 1. If you haven't already, download [Telegram](https://telegram.org/) on your (mobile) device.
 2. [Setup](https://telegram.me/botfather) a Telegram bot. Pick any name you like.
 3. Start a conversation with your new Telegram bot.
-4. Clone this repository/copy the file `alert` and put it somewhere in your PATH (like in `~/.local/.bin`).
+4. Clone this repository or download the file `alert` and put it somewhere in your PATH (like in `~/.local/.bin`).
 
 ## Usage
 
