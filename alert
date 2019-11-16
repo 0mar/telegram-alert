@@ -54,7 +54,7 @@ fi
 MESSAGE_URL="https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$ID"
 if [ $# -eq 0 ]
 then
-    MESSAGE="Alert from machine"
+    MESSAGE="Alert from $(hostname)"
 else
     MESSAGE="$@"
 fi
