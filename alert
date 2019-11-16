@@ -40,7 +40,10 @@ then
     ID=$(<$ID_FILE)
 else
     echo "Fetching chat ID"
-    ID=$(get_url "https://api.telegram.org/bot$TOKEN/getUpdates" | grep -Po "(?<=\"id\":)\d+" | head -1)
+    ID_QUERY=$(get_url "https://api.telegram.org/bot$TOKEN/getUpdates") 
+    NAME=$(echo "$ID_QUERY" | grep -Po "(?<=\"first_name\":)\".+?\"" | tail -1)
+    ID=$(echo "$ID_QUERY" | grep -Po "(?<=\"id\":)\d+" | tail -1)
+    echo "Chat ID found and stored (established connection with $NAME)"
     echo $ID > $ID_FILE
 fi
 
