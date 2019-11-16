@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
-TOKEN_FILE="$HOME/.telegram_token"
-ID_FILE="$HOME/.telegram_chat_id"
+
+TOKEN=""
+ID=""
+CONFIG_FILE="$HOME/.teledove.conf"
+
+if [ -f $CONFIG_FILE ]
+then
+    . $CONFIG_FILE
+fi
 
 get_url () {
     if hash curl 2>/dev/null
@@ -15,10 +22,8 @@ get_url () {
     fi
 }
 
-if [ -f $TOKEN_FILE ]
+if [ -z "$TOKEN" ]
 then
-    TOKEN=$(<$TOKEN_FILE)
-else
     TOKEN_SET=0
     while [ $TOKEN_SET -eq 0 ]
     do
@@ -27,32 +32,32 @@ else
         if [[ $TOKEN == *":"* && ${#TOKEN} -gt 30 ]]
         then
            TOKEN_SET=1
-           echo "Token set and stored in $TOKEN_FILE"
+           echo "Token set and stored in $CONFIG_FILE"
        else
            echo "That does not look like a valid token. Please try again"
        fi
     done
-    echo $TOKEN > $TOKEN_FILE
+    echo "TOKEN=$TOKEN" > $CONFIG_FILE
+    ID=""
 fi 
 
-if [ -f $ID_FILE ]
+if [ -z "$ID" ]
 then
-    ID=$(<$ID_FILE)
-else
     echo "Fetching chat ID"
     ID_QUERY=$(get_url "https://api.telegram.org/bot$TOKEN/getUpdates") 
     NAME=$(echo "$ID_QUERY" | grep -Po "(?<=\"first_name\":)\".+?\"" | tail -1)
     ID=$(echo "$ID_QUERY" | grep -Po "(?<=\"id\":)\d+" | tail -1)
-    echo "Chat ID found and stored (established connection with $NAME)"
-    echo $ID > $ID_FILE
+    if [ -z "$ID" ]
+    then
+        echo "No chat ID found. Start communicating with bot/send a message and try again"
+        rm $CONFIG_FILE
+        exit 1;
+    fi
+    echo "Chat ID found and stored in $CONFIG_FILE"
+    echo "Established connection with $NAME"
+    echo "ID=$ID" >> $CONFIG_FILE
 fi
 
-if [ -z "$ID" ]
-then
-    echo "No chat ID found. Start communicating with bot/send a message and try again"
-    rm $ID_FILE
-    exit 1;
-fi
 
 MESSAGE_URL="https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$ID"
 if [ $# -eq 0 ]
@@ -66,5 +71,5 @@ if [[ $RESPONSE == *"\"ok\":false"* ]]
 then
     echo "Alert failed. Please check if 1) the Telegram Bot is up and running and 2) you have send a message to this bot before"
     echo "Deleting cache, please try again"
-    rm $TOKEN_FILE $ID_FILE
+    rm $CONFIG_FILE
 fi
