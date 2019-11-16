@@ -15,7 +15,7 @@ Teledove might be able to help you out. It is a simple, minimal command line too
 The script is written to make use of minimal dependencies. It relies on
 
  - `bash`
- - `curl`
+ - `curl`/`wget`
  - `grep`
 
 all of which should be present on standard Mac/Linux systems, but can otherwise be installed with `brew`/any package manager.
