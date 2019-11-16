@@ -47,9 +47,12 @@ If something weird happens, deleting/modifying these files manually might help.
 
 No information is stored/transmitted through any other third parties than your own and the Telegram servers. You can examine the script to convince yourself of this.
 
-However, even though communication through between you and a Bot is private and encrypted (as long as you keep you token safe), the bots themselves are public.
-This means that each time a chat ID is set automatically, it is recommendable to send yourself an alert to convince yourself it is going to the right chat.
+However, even though communication through between you and a Bot is private and encrypted (as long as you keep you token safe), the bots themselves are public, meaning anyone can start a conversation with your bot.
+For this reason, the first time after a chat ID is fetched and set, `alert` displays the username with which the connection has been established. Obviously, this will also be confirmed by your bot sending you a message.
+
 Alternatively, you can hardcode/preset the chat ID in `~/.telegram_chat_id`.
+
+As long as a connection is established and the chat ID is functional, all messages to the bot will be ignored.
 
 ## Bugs
 
