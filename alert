@@ -51,7 +51,7 @@ then
     then
         echo "No chat ID found. Start communicating with bot/send a message and try again"
         rm $CONFIG_FILE
-        exit 1;
+        exit 1
     fi
     echo "Chat ID found and stored in $CONFIG_FILE"
     echo "Established connection with $NAME"
@@ -72,4 +72,5 @@ then
     echo "Alert failed. Please check if 1) the Telegram Bot is up and running and 2) you have send a message to this bot before"
     echo "Deleting cache, please try again"
     rm $CONFIG_FILE
+    exit 1
 fi
