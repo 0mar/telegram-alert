@@ -1,4 +1,4 @@
-# Teledove
+# Telegram-alert
 
 Telegram-based nofitication system for the command line with minimal configuration or dependencies.
 
@@ -8,7 +8,7 @@ Telegram-based nofitication system for the command line with minimal configurati
  - Want to be notified of rare events on your computer as they happen?
  - Interested in receiving daily/hourly scheduled (`cron`) job results on your phone?
 
-Teledove might be able to help you out. It is a simple, minimal command line tool that uses a personal Telegram bot to notify you of anything you'd like.
+Telegram-alert might be able to help you out. It is a simple, minimal command line tool that uses a personal Telegram bot to notify you of anything you'd like.
 
 ## Requirements
 
@@ -34,12 +34,12 @@ The script also requires a Telegram bot to notify you with. Setting one up is ea
  - `alert` sends a default message.
  - `alert custom message` sends `custom message`.
 
-The first time you run alert, it asks for a token. You can find this token in your conversation with the BotFather. It looks like `123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11` and if you supply it to the script, it will be stored in the file `~/.teledove.conf` for future use.
+The first time you run alert, it asks for a token. You can find this token in your conversation with the BotFather. It looks like `123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11` and if you supply it to the script, it will be stored in the file `~/.telegram_alert.conf` for future use.
 
 Keep the token private, it acts like a password to your bot.
 
 After obtaining the token, it will fetch the chat ID of the conversation you started with the bot.
-Upon success, this ID will also be stored in `~/.teledove.conf`. If you have not conversed with the bot, it will not be able to find this chat ID.
+Upon success, this ID will also be stored in `~/.telegram_alert.conf`. If you have not conversed with the bot, it will not be able to find this chat ID.
 
 If something weird happens, deleting/modifying the configuration file might help.
 
