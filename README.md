@@ -1,6 +1,6 @@
 # Teledove
 
-Telegram-based nofitication system for the command line. 
+Telegram-based nofitication system for the command line with minimal configuration or dependencies.
 
 ## Use case
 
@@ -43,14 +43,16 @@ Upon success, this ID will also be stored in `~/.teledove.conf`. If you have not
 
 If something weird happens, deleting/modifying the configuration file might help.
 
-## Caveat
+## Security
 
 No information is stored/transmitted through any other third parties than your own and the Telegram servers. You can examine the script to convince yourself of this.
+
+Any 
 
 However, even though communication through between you and a Bot is private and encrypted (as long as you keep you token safe), the bots themselves are public, meaning anyone can start a conversation with your bot.
 For this reason, the first time after a chat ID is fetched and set, `alert` displays the username with which the connection has been established. Obviously, this will also be confirmed by your bot sending you a message.
 
-Alternatively, you can hardcode/preset the chat ID in `~/.teledove.conf`.
+Alternatively, you can hardcode/preset the chat ID in `~/.telegram_alert.conf`.
 
 As long as a connection is established and the chat ID is functional, all messages to the bot will be ignored.
 
