@@ -47,8 +47,6 @@ If something weird happens, deleting/modifying the configuration file might help
 
 No information is stored/transmitted through any other third parties than your own and the Telegram servers. You can examine the script to convince yourself of this.
 
-Any 
-
 However, even though communication through between you and a Bot is private and encrypted (as long as you keep you token safe), the bots themselves are public, meaning anyone can start a conversation with your bot.
 For this reason, the first time after a chat ID is fetched and set, `alert` displays the username with which the connection has been established. Obviously, this will also be confirmed by your bot sending you a message.
 
