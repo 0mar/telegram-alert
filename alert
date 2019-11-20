@@ -2,7 +2,7 @@
 
 TOKEN=""
 ID=""
-CONFIG_FILE="$HOME/.teledove.conf"
+CONFIG_FILE="$HOME/.telegram_alert.conf"
 
 if [ -f $CONFIG_FILE ]
 then
