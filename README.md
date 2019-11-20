@@ -4,9 +4,9 @@ Telegram-based nofitication system for the command line with minimal configurati
 
 ## Use case
 
- - Have a long running process of which you want to be alerted on finish even when away from your machine?
- - Want to be notified of rare events on your computer as they happen?
- - Interested in receiving daily/hourly scheduled (`cron`) job results on your phone?
+ - Do you have a long running process that requires immediate attention when it finishes?
+ - Would you like to be notified of rare events on your computer as they happen?
+ - Interested in being alerted when your job on a remote machine is done running?
 
 Telegram-alert might be able to help you out. It is a simple, minimal command line tool that uses a personal Telegram bot to notify you of anything you'd like.
 
