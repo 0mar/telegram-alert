@@ -22,7 +22,7 @@ all of which should be present on standard Mac and Linux systems, but can otherw
 
 The script also requires a Telegram bot to notify you with. Setting one up is easy and can be done through Telegram itself with the [BotFather](https://telegram.me/botfather) wizard.
 
-\**The script needs to parse a bit of JSON, for which I would normally use Python's `json` library. Unfortunately, python3 is not necessarily installed on MacOS. A reasonably robust would be `grep -P`, but again, not present on MacOS. `perl`, however, seems to be almost mandatory for UNIX systems*.
+\**The script needs to parse a bit of JSON, for which I would normally use a library, e.g. Python's `json`. Unfortunately, python3 is not necessarily available on MacOS by default. A reasonably robust alternative would be `grep -P`, but again, not on MacOS. `perl`, however, seems to be almost mandatory for any UNIX system*.
 
 ## Setup
 
