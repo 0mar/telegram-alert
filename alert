@@ -12,7 +12,7 @@ fi
 get_url () {
     if hash curl 2>/dev/null
     then
-        curl -sS "$1"
+        curl -sS --globoff "$1"
     elif hash wget 2>/dev/null
     then
         wget -qO- "$1"
